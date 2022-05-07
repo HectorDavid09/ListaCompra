@@ -9,9 +9,8 @@ const CrearItem = (producto) =>{
 
     let item = {
         producto: producto,
-        estado: false
-    };
-
+        estado: 'En carrito'
+    }
     arrayProductos.push(item);
     return item;
 }
@@ -33,9 +32,8 @@ const PintarDB =()=>{
         arrayProductos=[];
     }else{
         arrayProductos.forEach(element => {
-            if(element.estado){
+            if(element.estado == 'Comprado'){
                 listaProductosUI.innerHTML += `<div class="alert alert-primary" role="alert"><i class="material-icons float-left mr-4">add_shopping_cart</i><b> ${element.producto} </b> - ${element.estado}<span class="float-right"><i class="material-icons">done</i><i class="material-icons">delete_outline</i></span></div>`
-
             }else{
                 listaProductosUI.innerHTML += `<div class="alert alert-danger" role="alert"><i class="material-icons float-left mr-4">add_shopping_cart</i><b> ${element.producto} </b> - ${element.estado}<span class="float-right"><i class="material-icons">done</i><i class="material-icons">delete_outline</i></span></div>`
 
@@ -57,8 +55,11 @@ const EliminarDB = (producto) =>{
 }
 
 const EditarDB = (producto) => {
-    let indexArray = arrayProductos.findIndex((elemento) => elemento.producto == producto);
-    arrayProductos[indexArray].estado = 'true';
+    let indexArray = arrayProductos.findIndex((elemento)=>{
+     return  elemento.producto===producto
+    });
+    console.log(index);
+    arrayProductos[indexArray].estado = 'Comprado';
     GuardarDB();
 }
 
@@ -82,7 +83,6 @@ listaProductosUI.addEventListener('click', (e)=>{
             if(e.target.innerHTML === 'delete_outline'){
                 EliminarDB(texto);
             }
-            
             if(e.target.innerHTML === 'done'){
                 EditarDB(texto);
             }
