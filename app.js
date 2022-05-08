@@ -5,21 +5,21 @@ let arrayProductos = [];
 
 //---------------------------
 
-const CrearItem = (producto) =>{
+const CrearItem = (producto, unidades, cantidad) =>{
 
     let item = {
         producto: producto,
+        unidad: unidades,
+        cantidad: cantidad,
         estado: 'En carrito'
     }
     arrayProductos.push(item);
     return item;
 }
 
-const GuardarDB = (producto) =>{
-
+const GuardarDB = (producto, unidades, cantidad) =>{
     localStorage.setItem('compra',JSON.stringify(arrayProductos))
     PintarDB();
-
 }
 
 const PintarDB =()=>{
@@ -33,10 +33,9 @@ const PintarDB =()=>{
     }else{
         arrayProductos.forEach(element => {
             if(element.estado == 'Comprado'){
-                listaProductosUI.innerHTML += `<div class="alert alert-primary" role="alert"><i class="material-icons float-left mr-4">add_shopping_cart</i><b> ${element.producto} </b> - ${element.estado}<span class="float-right"><i class="material-icons">done</i><i class="material-icons">delete_outline</i></span></div>`
+                listaProductosUI.innerHTML += `<div class="alert alert-primary" role="alert"><i class="material-icons float-left mr-4">add_shopping_cart</i><b> ${element.producto} </b> <b> ${element.cantidad} </b> <b> ${element.unidad} </b>- ${element.estado}<span class="float-right"><i class="material-icons">done</i><i class="material-icons">delete_outline</i></span></div>`
             }else{
-                listaProductosUI.innerHTML += `<div class="alert alert-danger" role="alert"><i class="material-icons float-left mr-4">add_shopping_cart</i><b> ${element.producto} </b> - ${element.estado}<span class="float-right"><i class="material-icons">done</i><i class="material-icons">delete_outline</i></span></div>`
-
+                listaProductosUI.innerHTML += `<div class="alert alert-danger" role="alert"><i class="material-icons float-left mr-4">add_shopping_cart</i><b> ${element.producto} </b><b> ${element.cantidad} </b><b> ${element.unidad} </b> - ${element.estado}<span class="float-right"><i class="material-icons">done</i><i class="material-icons">delete_outline</i></span></div>`
             }
         });
     }
@@ -69,8 +68,9 @@ const EditarDB = (producto) => {
 formularioUI.addEventListener('submit', (e)=>{
     e.preventDefault();
     let productoUI = document.querySelector('#producto').value;
-    
-    CrearItem(productoUI);
+    let unidadesUI = document.querySelector('#unidades').value;
+    let cantidadUI = document.querySelector('#cantidad').value;
+    CrearItem(productoUI,unidadesUI,cantidadUI);
     GuardarDB();
     formularioUI.reset();
 });

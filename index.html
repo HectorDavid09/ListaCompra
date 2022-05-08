@@ -23,18 +23,24 @@
                 add_shopping_cart
             </i>                
         </h3>
-    
+       
         <form id="formulario">
-    
             <input type="text" id="producto" class="form-control my-3">
+            <select name="Unidades" id="unidades">
+                <option>Unidad</option>
+                <option>Kg</option>
+                <option>Litro</option>
+            </select>
+            <input type="number" id="cantidad" class="form-control my-3">
             <button type="submit" class="btn btn-primary">Guardar</button>
         </form> 
+        
         <div id="listaProductos" class="mt-4">
             <div class="alert alert-primary" role="alert">
                 <i class="material-icons float-left mr-4">
                     add_shopping_cart
                 </i>
-                <b> Texto del producto </b> - Estado
+                <b> Texto del producto </b> <b>Unidad</b> <b>Cantidad</b> - Estado
                 <span class="float-right">
                     <i class="material-icons">
                         done
@@ -45,6 +51,7 @@
                 </span>
             </div>
         </div>
+        
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
