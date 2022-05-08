@@ -1,0 +1,16 @@
+div{
+    background-color: gray;
+    border: 2px solid black;
+    padding: 10px 10px 10px;
+    border-radius: 10px;
+}
+
+.btn:hover{
+    background-color: violet;
+    /*height:50px;*/  
+    justify-content:center
+}
+
+i{
+    cursor:pointer;
+}
