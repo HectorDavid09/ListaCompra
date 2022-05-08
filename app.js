@@ -43,6 +43,7 @@ const PintarDB =()=>{
 }
 
 const EliminarDB = (producto) =>{
+    producto = producto.trim();
     let indexArray;
     arrayProductos.forEach((elemento, index) => {
         if(elemento.producto === producto){
@@ -55,10 +56,10 @@ const EliminarDB = (producto) =>{
 }
 
 const EditarDB = (producto) => {
+    producto = producto.trim();
     let indexArray = arrayProductos.findIndex((elemento)=>{
      return  elemento.producto===producto
     });
-    console.log(index);
     arrayProductos[indexArray].estado = 'Comprado';
     GuardarDB();
 }
